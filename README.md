@@ -10,3 +10,24 @@
 ![teaser](assets/medvisiochat.png)
 
 ![teaser](assets/case.png)
+
+## Requirements
+A suitable [conda](https://conda.io/) environment named `medvisiochat` can be created
+and activated with:
+
+```
+conda create -n medvisiochat python=3.9
+conda activate medvisiochat
+conda install pytorch==2.4.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+pip install -r requirements.txt
+```
+
+To train the medvisiochat, run
+```
+python train.py
+```
+
+To inference the medvisiochat, run
+```
+python inference.py
+```
