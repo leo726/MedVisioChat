@@ -22,6 +22,10 @@ conda install pytorch==2.4.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch
 pip install -r requirements.txt
 ```
 
+For classification task, the json file for MIMIC dataset is [MIMIC]([https://drive.google.com/file/d/12LUDdJW8_R0usXVe8EQvgCvhplje9LgH/view?usp=drive_link](https://drive.google.com/file/d/1N8QDCMFtc7MHWjcQaWsHM9LG2Mgk-a3l/view?usp=drive_link)).
+
+For visual grounding task, the json file for VinDr dataset is [VinDr]([https://drive.google.com/file/d/1wh8Gi1M6AV1lH37Dnq-rAquORdg5YGCR/view?usp=drive_link](https://drive.google.com/file/d/1_N7AEYrm0aFpWcE1OMIOR1q8a4WRsila/view?usp=drive_link)).
+
 To train the medvisiochat, run
 ```
 python train.py
