@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/mnt/sdc/yangling/MedXchat')
+sys.path.append('/mnt/sdc/yangling/MedVisiochat')
 from lightning.pytorch import LightningDataModule
 from torch.utils.data import DataLoader
 from dataset.data_helper_qwenvl import ParseDataset_VG, ParseDataset_CL, RandomDataset
