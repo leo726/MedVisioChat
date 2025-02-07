@@ -2,7 +2,7 @@ import sys
 sys.path.append('/mnt/sdc/yangling/MedXchat')
 from lightning.pytorch import LightningDataModule
 from torch.utils.data import DataLoader
-from dataset.data_helper_qwenvl import ParseDataset_RG, ParseDataset_VQA, ParseDataset_SD, ParseDataset_VG,RandomDataset
+from dataset.data_helper_qwenvl import ParseDataset_VG, ParseDataset_CL, RandomDataset
 import torch
 import numpy as np
 from torch.nn.utils.rnn import pad_sequence
@@ -47,9 +47,10 @@ class DataModule(LightningDataModule):
     ):
         super().__init__()
         self.args = args
-        self.train_dataset = RandomDataset([ParseDataset_RG(args, 'train'), ParseDataset_VQA(args, 'train'), ParseDataset_SD(args, 'train'), ParseDataset_VG(args, 'train')])
-        self.dev_dataset = RandomDataset([ParseDataset_RG(args, 'val'), ParseDataset_VQA(args, 'val'), ParseDataset_SD(args, 'val'), ParseDataset_VG(args, 'val')])
-        self.test_dataset = RandomDataset([ParseDataset_RG(args, 'test'), ParseDataset_VQA(args, 'test'), ParseDataset_SD(args, 'test'), ParseDataset_VG(args, 'test')])
+        self.train_dataset = RandomDataset([ParseDataset_CL(args, 'train'), ParseDataset_VG(args, 'train')])
+        self.dev_dataset = RandomDataset([ParseDataset_CL(args, 'val'), ParseDataset_VG(args, 'val')])
+        self.test_dataset = RandomDataset([ParseDataset_CL(args, 'test'), ParseDataset_VG(args, 'test')])
+
 
     def prepare_data(self):
         """
