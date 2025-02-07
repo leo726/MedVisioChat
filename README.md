@@ -21,6 +21,7 @@ conda activate medvisiochat
 conda install pytorch==2.4.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 pip install -r requirements.txt
 ```
+To train MedVisioChat, you need to download the MIMIC and VinDr dataset images.
 
 For classification task, the json file for MIMIC dataset is [MIMIC](https://drive.google.com/file/d/1N8QDCMFtc7MHWjcQaWsHM9LG2Mgk-a3l/view?usp=drive_link).
 
