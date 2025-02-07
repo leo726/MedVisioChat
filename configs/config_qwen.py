@@ -5,12 +5,10 @@ import ast
 parser = argparse.ArgumentParser(description="hyper-parameter for XChat")
 
 # ====================== Dataset Config ===========================
-parser.add_argument('--rg_dataset', metavar='DATASET', default='/mnt/sdc/yangling/MedXchat/data_qwen/report_qwenvl.json', help='training datasets to use')
-parser.add_argument('--vqa_dataset', metavar='DATASET', default='/mnt/sdc/yangling/MedXchat/data_qwen/vqa_qwenvl.json', help='training datasets to use')
-parser.add_argument('--sd_dataset', metavar='DATASET', default='/mnt/sdc/yangling/MedXchat/data_qwen/sd_qwenvl.json', help='training datasets to use')
-parser.add_argument('--vg_dataset', metavar='DATASET', default='/mnt/sdc/yangling/MedXchat/data_qwen/vg_NIH.json', help='training datasets to use')
+parser.add_argument('--vg_dataset', metavar='DATASET', default='data_qwen/vg_VinDr_class_normalize.json', help='training datasets to use')
+parser.add_argument('--cl_dataset', metavar='DATASET', default='data_qwen/mimic_classification/classification_mimic_single.json', help='training datasets to use')
 parser.add_argument('--base_dir', default='/home/yangling/ControlNet/training/mimic_cxr/images', type=str, help='Dataset directory containing image folders.')
-parser.add_argument('--savedmodel_path', default='/mnt/sdc/yangling/MedXchat/save/visual', type=str, help='Dataset directory containing image folders.')
+parser.add_argument('--savedmodel_path', default='save/visio', type=str, help='Dataset directory containing image folders.')
 parser.add_argument('--ckpt_file', default=None, type=str, help='Dataset directory containing image folders.')
 parser.add_argument('--delta_file', default=None, type=str, help='Dataset directory containing image folders.')
 parser.add_argument('--text_embed', default='clip_embeds_zero', type=str, help='Dataset directory containing image folders.')
