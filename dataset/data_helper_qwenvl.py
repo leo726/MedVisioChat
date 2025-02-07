@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/mnt/sdc/yangling/MedXchat/')
+sys.path.append('/mnt/sdc/yangling/MedVisiochat/')
 import os
 import json
 import numpy as np
@@ -9,11 +9,6 @@ from PIL import Image
 import torch.utils.data as data
 import torchvision.transforms as transforms
 from transformers import AutoTokenizer
-
-# pretrained_ckpt = './Checkpoints/mplug-owl-llama-7b-video'
-# tokenizer = MplugOwlTokenizer.from_pretrained(pretrained_ckpt)
-# pretrained_ckpt = 'MAGAer13/mplug-owl-llama-7b'
-# tokenizer = AutoTokenizer.from_pretrained(pretrained_ckpt)
 
 class FieldParser:
     def __init__(
@@ -108,70 +103,6 @@ class FieldParser:
             return self.parse(inputs)
         else:
             return self.parse_gen(inputs)
-    
-
-class ParseDataset_RG(data.Dataset):
-    def __init__(self, args, split='train'):
-        self.train = split == "train"
-        meta = json.load(open(args.rg_dataset, 'r'))
-        if split == "train":
-            self.df = meta['train']
-        else:
-            self.df = meta['test']
-        self.parser = FieldParser(args)
-
-    def __len__(self):
-        return len(self.df)
-
-    def __getitem__(self, index):
-        try:
-            print("use RG data")
-            return self.df[index]
-        except Exception as e:
-            print(f'Error reading for {self.df[index]["id"]}: {e}')
-            idx = np.random.randint(0, len(self.df)-1)
-
-class ParseDataset_VQA(data.Dataset):
-    def __init__(self, args, split='train'):
-        self.train = split == "train"
-        meta = json.load(open(args.vqa_dataset, 'r'))
-        if split == "train":
-            self.df = meta['train']
-        else:
-            self.df = meta['test']
-        self.parser = FieldParser(args)
-
-    def __len__(self):
-        return len(self.df)
-
-    def __getitem__(self, index):
-        try:
-            print("use VQA data")
-            return self.df[index]
-        except Exception as e:
-            print(f'Error reading for {self.df[index]["id"]}: {e}')
-            idx = np.random.randint(0, len(self.df)-1)
-
-class ParseDataset_SD(data.Dataset):
-    def __init__(self, args, split='train'):
-        self.train = split == "train"
-        meta = json.load(open(args.sd_dataset, 'r'))
-        if split == "train":
-            self.df = meta['train']
-        else:
-            self.df = meta['test']
-        self.parser = FieldParser(args)
-
-    def __len__(self):
-        return len(self.df)
-
-    def __getitem__(self, index):
-        try:
-            print("use SD data")
-            return self.df[index]
-        except Exception as e:
-            print(f'Error reading for {self.df[index]["id"]}: {e}')
-            idx = np.random.randint(0, len(self.df)-1)
 
 class ParseDataset_VG(data.Dataset):
     def __init__(self, args, split='train'):
@@ -194,6 +125,27 @@ class ParseDataset_VG(data.Dataset):
             print(f'Error reading for {self.df[index]["id"]}: {e}')
             idx = np.random.randint(0, len(self.df)-1)
 
+class ParseDataset_CL(data.Dataset):
+    def __init__(self, args, split='train'):
+        self.train = split == "train"
+        meta = json.load(open(args.cl_dataset, 'r'))
+        if split == "train":
+            self.df = meta['train']
+        else:
+            self.df = meta['test']
+        self.parser = FieldParser(args)
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, index):
+        try:
+            print("use mimic Classification data")
+            return self.df[index]
+        except Exception as e:
+            print(f'Error reading for {self.df[index]["id"]}: {e}')
+            idx = np.random.randint(0, len(self.df)-1)
+            
 class RandomDataset(data.Dataset):
     def __init__(self, datasets):
         self.datasets = datasets
@@ -206,24 +158,6 @@ class RandomDataset(data.Dataset):
         chosen_dataset = random.choice(self.datasets)
         return chosen_dataset[idx % len(chosen_dataset)]
 
-
-def create_rg_datasets(args):
-    train_dataset = ParseDataset_RG(args, 'train')
-    dev_dataset = ParseDataset_RG(args, 'val')
-    test_dataset = ParseDataset_RG(args, 'test')
-    return train_dataset, dev_dataset, test_dataset
-
-def create_vqa_datasets(args):
-    train_dataset = ParseDataset_VQA(args, 'train')
-    dev_dataset = ParseDataset_VQA(args, 'val')
-    test_dataset = ParseDataset_VQA(args, 'test')
-    return train_dataset, dev_dataset, test_dataset
-
-def create_sd_datasets(args):
-    train_dataset = ParseDataset_SD(args, 'train')
-    dev_dataset = ParseDataset_SD(args, 'val')
-    test_dataset = ParseDataset_SD(args, 'test')
-    return train_dataset, dev_dataset, test_dataset
 
 
 
