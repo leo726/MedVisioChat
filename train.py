@@ -2,7 +2,7 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 
 import sys
-sys.path.append('/mnt/sdc/yangling/MedXchat/')
+sys.path.append('/mnt/sdc/yangling/MedVisiochat/')
 from pprint import pprint
 from configs.config_qwen import parser
 from dataset.data_module_qwenvl import DataModule
