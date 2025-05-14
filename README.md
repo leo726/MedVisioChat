@@ -5,7 +5,7 @@
 
 [Ling Yang](https://scholar.google.com/citations?user=0x4eX9cAAAAJ&hl=zh-CN),
 [Zhanyu Wang](https://scholar.google.com/citations?hl=zh-CN&user=maeFb38AAAAJ),
-[Luping Zhou](https://scholar.google.com/citations?user=BThVCu8AAAAJ&hl=zh-CN&oi=ao)<br/>
+[Luping Zhou](https://scholar.google.com.au/citations?user=SgofT2MAAAAJ&hl=en)<br/>
 
 ![teaser](assets/medvisiochat.png)
 
